@@ -24,6 +24,10 @@
                  [org.cloudhoist/nagios-config "0.5.0"]
                  [org.cloudhoist/crontab "0.5.0"]
 
+                 [vmfest "0.2.8"]
+
+                 [org.cloudhoist/pallet "0.7.3"]
+                 [org.cloudhoist/pallet-vmfest "0.3.0-alpha.2"]
                  [com.jcraft/jsch.agentproxy.usocket-jna "0.0.5"]
                  [com.jcraft/jsch.agentproxy.usocket-nc "0.0.5"]
                  [com.jcraft/jsch.agentproxy.sshagent "0.0.5"]
@@ -40,4 +44,6 @@
 
   :dev-dependencies [[swank-clojure "1.2.1"]
                      [org.cloudhoist/pallet-lein "0.5.2"]]
-  :min-lein-version "2.0.0")
+  :min-lein-version "2.0.0"
+  :plugins [[org.cloudhoist/pallet-lein "0.5.2"]]
+  )
