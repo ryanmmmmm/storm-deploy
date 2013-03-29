@@ -141,7 +141,7 @@
               image))]
        (node-spec
          :image     {:image-id :debian-6.0.2.1-64bit-v0.3}
-         :hardware  {:hardware-id :small})))
+         :hardware  {:hardware-id :micro})))
 
 (defn zookeeper
   ([name server-spec]

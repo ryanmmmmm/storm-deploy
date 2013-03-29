@@ -57,10 +57,10 @@
 (defn attach! [aws name]
   (info "Attaching to Available Cluster...")
   (sync-storm-conf-dir aws name)
-  (authorizeme aws (jclouds-group "nimbus-" name) 80 (my-region))
-  (authorizeme aws (jclouds-group "nimbus-" name) (node/storm-conf "nimbus.thrift.port") (my-region))
-  (authorizeme aws (jclouds-group "nimbus-" name) (node/storm-conf "ui.port") (my-region))
-  (authorizeme aws (jclouds-group "nimbus-" name) (node/storm-conf "drpc.port") (my-region))
+ ; (authorizeme aws (jclouds-group "nimbus-" name) 80 (my-region))
+ ; (authorizeme aws (jclouds-group "nimbus-" name) (node/storm-conf "nimbus.thrift.port") (my-region))
+ ; (authorizeme aws (jclouds-group "nimbus-" name) (node/storm-conf "ui.port") (my-region))
+ ; (authorizeme aws (jclouds-group "nimbus-" name) (node/storm-conf "drpc.port") (my-region))
   (info "Attaching Complete."))
 
 (defn start-with-nodes! [aws name nimbus supervisor zookeeper]
@@ -78,8 +78,8 @@
             )
     (debug "Finished converge")
 
-    (authorize-group aws (my-region) (jclouds-group "nimbus-" name) (jclouds-group "supervisor-" name))
-    (authorize-group aws (my-region) (jclouds-group "supervisor-" name) (jclouds-group "nimbus-" name))
+    ;(authorize-group aws (my-region) (jclouds-group "nimbus-" name) (jclouds-group "supervisor-" name))
+    ;(authorize-group aws (my-region) (jclouds-group "supervisor-" name) (jclouds-group "nimbus-" name))
     (debug "Finished authorizing groups")
 
     (lift nimbus :compute aws :phase [:post-configure :exec])
