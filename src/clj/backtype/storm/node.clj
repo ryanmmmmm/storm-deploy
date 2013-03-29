@@ -62,10 +62,7 @@
 
 (defn base-server-spec []
   (server-spec
-   :phases {:bootstrap (fn [req] (automated-admin-user/automated-admin-user
-                                  req
-                                  (:username *USER*)
-                                  (:public-key-path *USER*)))
+   :phases {
             :configure (phase-fn
                         (java/java :openjdk))}))
 
@@ -143,17 +140,14 @@
               (assoc image image-key (f val))
               image))]
        (node-spec
-        :image (-> {:inbound-ports (concat inbound-ports [22])
-                    ;; :security-groups ["backend"]
-                    }
-                   (assoc-with-conf-key :image-id "image")
-                   (assoc-with-conf-key :hardware-id "hardware")
-                   (assoc-with-conf-key :spot-price "spot.price" :f float)
-                   ))))
+         :image     {:image-id :debian-6.0.2.1-64bit-v0.3}
+         :hardware  {:hardware-id :small})))
 
 (defn zookeeper
   ([name server-spec]
-     (group-spec
+    (println "ryan---------" (node-spec-from-config "zookeeper"
+                   [(storm-conf "storm.zookeeper.port")]))
+    (group-spec
       (str "zookeeper-" name)
       :node-spec (node-spec-from-config "zookeeper"
                                         [(storm-conf "storm.zookeeper.port")])
